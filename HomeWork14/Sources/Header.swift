@@ -23,9 +23,9 @@ class PhotosCellHeader: UICollectionReusableView {
 
  lazy var buttonAll: UIButton = {
         let buttonAll = UIButton(configuration: .plain(), primaryAction: nil)
-        buttonAll.configuration?.title = "Все"
+//        buttonAll.configuration?.title = "Все"
         buttonAll.configuration?.baseForegroundColor = .systemBlue
-        buttonAll.configuration?.attributedTitle?.font = .systemFont(ofSize: 22)
+//        buttonAll.configuration?.attributedTitle?.font = .systemFont(ofSize: 22)
         buttonAll.configuration?.titleAlignment = .trailing
         buttonAll.translatesAutoresizingMaskIntoConstraints = false
         return buttonAll
@@ -74,6 +74,7 @@ class PhotosCellHeader: UICollectionReusableView {
             line.heightAnchor.constraint(equalToConstant: 1),
             line.widthAnchor.constraint(equalToConstant: 100),
             line.rightAnchor.constraint(equalTo: rightAnchor.self),
+            line.topAnchor.constraint(equalTo: topAnchor.self, constant: 5)
 
         ])
     }

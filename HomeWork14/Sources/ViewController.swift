@@ -17,7 +17,9 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(MyAlbumsCell.self, forCellWithReuseIdentifier: MyAlbumsCell.identifier)
-        collectionView.register(PhotosCellHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PhotosCellHeader.identifier)
+        collectionView.register(PhotosCellHeader.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: PhotosCellHeader.identifier)
         return collectionView
     }()
 
@@ -62,7 +64,7 @@ class ViewController: UIViewController {
         return UICollectionViewCompositionalLayout { (section, _) -> NSCollectionLayoutSection in
 
             switch section {
-            case 0:
+            case 0, 1:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                       heightDimension: .fractionalHeight(1))
                 let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -76,7 +78,7 @@ class ViewController: UIViewController {
 
                 let layoutSectionHeaderSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.1),
-                    heightDimension: .estimated(50))
+                    heightDimension: .estimated(60))
                 let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: layoutSectionHeaderSize,
                     elementKind: UICollectionView.elementKindSectionHeader,
@@ -84,7 +86,7 @@ class ViewController: UIViewController {
                 layoutSectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 28, bottom: 0, trailing: 11)
 
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6)
+                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 6, bottom: 10, trailing: 6)
                 layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
                 return layoutSection
@@ -113,6 +115,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         switch section {
         case 0:
             return 6
+        case 1:
+            return 2
         default:
             return 1
         }
@@ -121,7 +125,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         switch indexPath.section {
-        case 0:
+        case 0, 1:
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbumsCell.identifier, for: indexPath)
             item.layer.cornerRadius = 5
             item.backgroundColor = .systemGreen
@@ -135,18 +139,35 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
+        2
     }
 
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath)
+    -> UICollectionReusableView {
+        
         switch indexPath.section {
         case 0:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PhotosCellHeader.identifier, for: indexPath) as! PhotosCellHeader
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: PhotosCellHeader.identifier,
+                                                                         for: indexPath) as! PhotosCellHeader
             header.title.text = "Мои альбомы"
+            header.buttonAll.configuration?.title = "Все"
+            header.buttonAll.configuration?.attributedTitle?.font = .systemFont(ofSize: 22)
+        
+            return header
+        case 1:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: PhotosCellHeader.identifier,
+                                                                         for: indexPath) as! PhotosCellHeader
+            header.title.text = "Общие альбомы"
+            header.buttonAll.configuration?.title = "Все"
+            header.buttonAll.configuration?.attributedTitle?.font = .systemFont(ofSize: 22)
             return header
         default:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PhotosCellHeader.identifier, for: indexPath) as! PhotosCellHeader
-            header.title.text = "Мои альбомы"
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: PhotosCellHeader.identifier,
+                                                                         for: indexPath) as! PhotosCellHeader
+            header.title.text = ""
             return header
         }
     }
