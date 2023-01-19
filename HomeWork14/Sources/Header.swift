@@ -23,9 +23,7 @@ class PhotosCellHeader: UICollectionReusableView {
 
  lazy var buttonAll: UIButton = {
         let buttonAll = UIButton(configuration: .plain(), primaryAction: nil)
-//        buttonAll.configuration?.title = "Все"
         buttonAll.configuration?.baseForegroundColor = .systemBlue
-//        buttonAll.configuration?.attributedTitle?.font = .systemFont(ofSize: 22)
         buttonAll.configuration?.titleAlignment = .trailing
         buttonAll.translatesAutoresizingMaskIntoConstraints = false
         return buttonAll
@@ -33,7 +31,7 @@ class PhotosCellHeader: UICollectionReusableView {
 
     lazy var line: UILabel = {
         let line = UILabel()
-        line.backgroundColor = .systemGray3
+        line.backgroundColor = .systemGray5
         line.contentMode = .center
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
@@ -63,7 +61,6 @@ class PhotosCellHeader: UICollectionReusableView {
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-
             title.centerYAnchor.constraint(equalTo: centerYAnchor.self),
             title.leftAnchor.constraint(equalTo: leftAnchor.self),
 
@@ -75,9 +72,10 @@ class PhotosCellHeader: UICollectionReusableView {
             line.widthAnchor.constraint(equalToConstant: 100),
             line.rightAnchor.constraint(equalTo: rightAnchor.self),
             line.topAnchor.constraint(equalTo: topAnchor.self, constant: 5)
-
         ])
     }
+
+    // MARK: - Configuration
 
     override func prepareForReuse() {
         super.prepareForReuse()
