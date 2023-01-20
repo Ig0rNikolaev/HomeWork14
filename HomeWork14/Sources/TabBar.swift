@@ -9,12 +9,16 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
+    //: MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTitle()
         setupTabBarViewController()
     }
 
+    //: MARK: - Setups
+    
         func setupTitle() {
             title = Title.album
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -24,21 +28,27 @@ class TabBarController: UITabBarController {
 
     func setupTabBarViewController() {
         let media = ViewController()
-        let mediaIcon = UITabBarItem(title: "Медиатека", image: UIImage(systemName: "photo.fill.on.rectangle.fill"), selectedImage: UIImage(systemName: "photo.fill.on.rectangle.fill"))
+        let mediaIcon = UITabBarItem(title: TabBarTitle.media,
+                                     image: UIImage(systemName: TabBarIcon.media),
+                                     selectedImage: UIImage(systemName: TabBarIcon.media))
         media.tabBarItem = mediaIcon
-
         let forYou = ViewController()
-        let forYouIcon = UITabBarItem(title: "Для Вас", image: UIImage(systemName: "heart.text.square.fill"), selectedImage: UIImage(systemName: "heart.text.square.fill"))
+        let forYouIcon = UITabBarItem(title: TabBarTitle.forYou,
+                                      image: UIImage(systemName: TabBarIcon.forYou),
+                                      selectedImage: UIImage(systemName: TabBarIcon.forYou))
         forYou.tabBarItem = forYouIcon
 
         let albums = ViewController()
-        let albumsIcon = UITabBarItem(title: "Альбомы", image: UIImage(systemName: "square.stack.fill"), selectedImage: UIImage(systemName: "square.stack.fill"))
+        let albumsIcon = UITabBarItem(title: TabBarTitle.albums,
+                                      image: UIImage(systemName: TabBarIcon.albums),
+                                      selectedImage: UIImage(systemName: TabBarIcon.albums))
         albums.tabBarItem = albumsIcon
 
         let search = ViewController()
-        let searchIcon = UITabBarItem(title: "Поиск", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
+        let searchIcon = UITabBarItem(title: TabBarTitle.search,
+                                      image: UIImage(systemName: TabBarIcon.search),
+                                      selectedImage: UIImage(systemName: TabBarIcon.search))
         search.tabBarItem = searchIcon
-
         let controller = [media, forYou, albums, search]
         self.setViewControllers(controller, animated: true)
     }
