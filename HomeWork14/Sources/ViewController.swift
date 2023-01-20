@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     }
 
     func setupTitle() {
-        title = "Альбомы"
+        title = Title.album
         navigationController?.navigationBar.prefersLargeTitles = true
         let leftBarButtom = UIBarButtonItem(systemItem: .add)
         navigationItem.leftBarButtonItem = leftBarButtom
@@ -64,81 +64,64 @@ class ViewController: UIViewController {
         return UICollectionViewCompositionalLayout { (section, _) -> NSCollectionLayoutSection in
 
             switch section {
-
             case 0:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                      heightDimension: .fractionalHeight(1))
+                let itemSize = SectionZero.itemSize
                 let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 2.15),
-                                                       heightDimension: .fractionalWidth(4 / 3.31))
-                let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: layoutItem, count: 2)
-                layoutGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(20)
-                layoutGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 1.5, bottom: 20, trailing: 1.5)
-
-                let layoutSectionHeaderSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.1),
-                    heightDimension: .estimated(60))
+                layoutItem.contentInsets = SectionZero.itemContentInsets
+                let groupSize = SectionZero.groupSize
+                let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                                   subitem: layoutItem,
+                                                                   count: 2)
+                layoutGroup.interItemSpacing = SectionZero.groupInterItemSpacing
+                layoutGroup.contentInsets = SectionZero.groupContentInsets
+                let layoutSectionHeaderSize = SectionZero.layoutSectionHeaderSize
                 let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: layoutSectionHeaderSize,
                     elementKind: UICollectionView.elementKindSectionHeader,
                     alignment: .top)
-                layoutSectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 28, bottom: 0, trailing: 11)
-
+                layoutSectionHeader.contentInsets = SectionZero.headerContentInsets
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6)
+                layoutSection.contentInsets = SectionZero.sectionContentInsets
                 layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
                 return layoutSection
 
             case 1:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                      heightDimension: .fractionalHeight(1))
+                let itemSize = SectionOne.itemSize
                 let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 2.15),
-                                                       heightDimension: .fractionalWidth(1 / 1.8))
-                let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: layoutItem, count: 1)
-                layoutGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(20)
-                layoutGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 1.5, bottom: 0, trailing: 1.5)
-
-                let layoutSectionHeaderSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.1),
-                    heightDimension: .estimated(60))
+                layoutItem.contentInsets = SectionOne.itemContentInsets
+                let groupSize = SectionOne.groupSize
+                let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                                     subitem: layoutItem,
+                                                                     count: 1)
+                layoutGroup.interItemSpacing = SectionOne.groupInterItemSpacing
+                layoutGroup.contentInsets = SectionOne.groupContentInsets
+                let layoutSectionHeaderSize = SectionOne.layoutSectionHeaderSize
                 let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: layoutSectionHeaderSize,
                     elementKind: UICollectionView.elementKindSectionHeader,
                     alignment: .top)
-                layoutSectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 28, bottom: 0, trailing: 11)
-
+                layoutSectionHeader.contentInsets = SectionOne.headerContentInsets
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 6, bottom: 10, trailing: 6)
+                layoutSection.contentInsets = SectionOne.sectionContentInsets
                 layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
                 return layoutSection
 
             default:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                      heightDimension: .fractionalHeight(1))
+                let itemSize = SectionDefoult.itemSize
                 let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                       heightDimension: .absolute(54))
+                layoutItem.contentInsets = SectionDefoult.itemContentInsets
+                let groupSize = SectionDefoult.groupSize
                 let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
-
-                let layoutSectionHeaderSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.1),
-                    heightDimension: .estimated(60))
+                let layoutSectionHeaderSize = SectionDefoult.layoutSectionHeaderSize
                 let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: layoutSectionHeaderSize,
                     elementKind: UICollectionView.elementKindSectionHeader,
                     alignment: .top)
-                layoutSectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 28, bottom: 0, trailing: 11)
-
+                layoutSectionHeader.contentInsets = SectionDefoult.headerContentInsets
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: -2)
+                layoutSection.contentInsets = SectionDefoult.sectionContentInsets
                 layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
                 return layoutSection
             }
@@ -180,34 +163,33 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: PhotosCellHeader.identifier,
                                                                          for: indexPath) as! PhotosCellHeader
-            header.title.text = "Мои альбомы"
-            header.buttonAll.configuration?.title = "Все"
+            header.title.text = Header.myAlbum
+            header.buttonAll.configuration?.title = Header.allButton
             header.buttonAll.configuration?.attributedTitle?.font = .systemFont(ofSize: 22)
-        
             return header
+
         case 1:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: PhotosCellHeader.identifier,
                                                                          for: indexPath) as! PhotosCellHeader
-            header.title.text = "Общие альбомы"
-            header.buttonAll.configuration?.title = "Все"
+            header.title.text = Header.sharedAlbums
+            header.buttonAll.configuration?.title = Header.allButton
             header.buttonAll.configuration?.attributedTitle?.font = .systemFont(ofSize: 22)
             return header
+
         case 2:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: PhotosCellHeader.identifier,
                                                                          for: indexPath) as! PhotosCellHeader
-            header.title.text = "Типы медиафайлов"
+            header.title.text = Header.mediaTypes
             return header
+
         default:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: PhotosCellHeader.identifier,
                                                                          for: indexPath) as! PhotosCellHeader
-            header.title.text = "Другое"
+            header.title.text = Header.utilities
             return header
         }
     }
-
-
-
 }

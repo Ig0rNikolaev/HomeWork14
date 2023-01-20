@@ -17,7 +17,7 @@ class AlbumsCell: UICollectionViewCell {
         let imagePhoto = UIImageView()
         imagePhoto.layer.cornerRadius = 5
         imagePhoto.clipsToBounds = true
-        imagePhoto.contentMode = .scaleToFill
+        imagePhoto.contentMode = .scaleAspectFill
         imagePhoto.translatesAutoresizingMaskIntoConstraints = false
         return imagePhoto
     }()
@@ -65,10 +65,10 @@ class AlbumsCell: UICollectionViewCell {
             imagePhoto.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: 0),
             imagePhoto.topAnchor.constraint(equalTo: contentView.topAnchor),
             imagePhoto.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50),
+
             lablePhoto.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
             lablePhotoNamber.topAnchor.constraint(equalTo: lablePhoto.bottomAnchor, constant: 3),
             lablePhotoNamber.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-
         ])
     }
     // MARK: - Configuration

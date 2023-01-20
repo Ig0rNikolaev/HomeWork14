@@ -16,7 +16,6 @@ struct Model: Hashable {
 }
 
 class ModelClass {
-
     static let models = [
         [Model(title: "Недавние", iconImage: "foto3", rightIconImage: nil, labelNumber: "84"),
          Model(title: "Избранное", iconImage: "foto4", rightIconImage: nil, labelNumber: "2"),

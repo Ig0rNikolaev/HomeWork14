@@ -21,7 +21,7 @@ class PhotosCellHeader: UICollectionReusableView {
         return title
     }()
 
- lazy var buttonAll: UIButton = {
+    lazy var buttonAll: UIButton = {
         let buttonAll = UIButton(configuration: .plain(), primaryAction: nil)
         buttonAll.configuration?.baseForegroundColor = .systemBlue
         buttonAll.configuration?.titleAlignment = .trailing
@@ -36,7 +36,6 @@ class PhotosCellHeader: UICollectionReusableView {
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
     }()
-
 
     // MARK: - Initializers
 
