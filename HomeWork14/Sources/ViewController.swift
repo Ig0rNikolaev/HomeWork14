@@ -28,7 +28,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitle()
         setupView()
         setupHierarchy()
         setupLayout()
@@ -38,13 +37,6 @@ class ViewController: UIViewController {
 
     func setupView() {
         view.backgroundColor = .white
-    }
-
-    func setupTitle() {
-        title = Title.album
-        navigationController?.navigationBar.prefersLargeTitles = true
-        let leftBarButtom = UIBarButtonItem(systemItem: .add)
-        navigationItem.leftBarButtonItem = leftBarButtom
     }
 
     private func setupHierarchy() {

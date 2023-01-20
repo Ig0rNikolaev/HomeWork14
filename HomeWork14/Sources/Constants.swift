@@ -142,6 +142,22 @@ enum SectionDefoult {
     static let sectionContentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: -2)
 }
 
+//: MARK: - Tab bar
+
+enum TabBarTitle {
+    static let media = "Медиатека"
+    static let forYou = "Для Вас"
+    static let albums = "Альбомы"
+    static let search = "Поиск"
+}
+
+enum TabBarIcon {
+    static let media = "photo.fill.on.rectangle.fill"
+    static let forYou = "heart.text.square.fill"
+    static let albums = "square.stack.fill"
+    static let search = "magnifyingglass"
+}
+
 // String
 
 enum Header {
@@ -153,7 +169,7 @@ enum Header {
 }
 
 enum Title {
-    static let album = "Альбом"
+    static let album = "Альбомы"
 }
 
 
