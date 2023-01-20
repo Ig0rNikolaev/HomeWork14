@@ -14,8 +14,6 @@ class TableCell: UICollectionViewCell {
 
     //: MARK: - UI Elements
 
-
-
     lazy var lineTable: UILabel = {
         let lineTable = UILabel()
         lineTable.contentMode = .center
@@ -26,7 +24,7 @@ class TableCell: UICollectionViewCell {
     private lazy var iconImage: UIImageView = {
         let iconImage = UIImageView()
         iconImage.tintColor = .systemBlue
-        iconImage.contentMode = .scaleToFill
+        iconImage.contentMode = .scaleAspectFill
         iconImage.translatesAutoresizingMaskIntoConstraints = false
         return iconImage
     }()
@@ -87,13 +85,10 @@ class TableCell: UICollectionViewCell {
         contentView.addSubview(labelNumber)
         contentView.addSubview(rightIconImage)
         contentView.addSubview(chevronIcon)
-
-
     }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-
             iconImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             iconImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             iconImage.heightAnchor.constraint(equalToConstant: 25),
@@ -112,7 +107,6 @@ class TableCell: UICollectionViewCell {
             chevronIcon.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             chevronIcon.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15),
 
-
             lineTable.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 50),
             lineTable.heightAnchor.constraint(equalToConstant: 1),
             lineTable.widthAnchor.constraint(equalToConstant: 500),
@@ -127,7 +121,10 @@ class TableCell: UICollectionViewCell {
         labelTable.text = model.title
         labelNumber.text = model.labelNumber
         self.rightIconImage.image = UIImage(systemName: model.rightIconImage ?? "")
+        deleteLine()
+    }
 
+    func deleteLine() {
         if labelTable.text == "Недавно удаленные" || labelTable.text == "Записи экрана" {
             lineTable.backgroundColor = .white
         } else {
@@ -142,7 +139,7 @@ class TableCell: UICollectionViewCell {
         self.iconImage.image = nil
         self.rightIconImage.image = nil
     }
-    }
+}
 
 
 
