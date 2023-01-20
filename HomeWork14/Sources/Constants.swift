@@ -153,7 +153,7 @@ enum Header {
 }
 
 enum Title {
-    static let album = "Альбом"
+    static let album = "Альбомы"
 }
 
 
