@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var model = ModelClass()
+
     //: MARK: - UI Elements
 
     private lazy var collectionView: UICollectionView = {
@@ -124,24 +126,26 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        ModelClass.models[section].count
+        return model.models[section].count
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return ModelClass.models.count
+        return model.models.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         switch indexPath.section {
         case 0, 1:
-            let item = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumsCell.identifier, for: indexPath) as! AlbumsCell
-            item.configuration(model: ModelClass.models[indexPath.section][indexPath.item])
-
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumsCell.identifier,
+                                                                for: indexPath) as? AlbumsCell else { return UICollectionViewCell() }
+            item.configuration(model: model.models[indexPath.section][indexPath.item])
             return item
+
         default:
-            let item = collectionView.dequeueReusableCell(withReuseIdentifier: TableCell.identifier, for: indexPath) as! TableCell
-            item.configuration(model: ModelClass.models[indexPath.section][indexPath.item])
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: TableCell.identifier,
+                                                                for: indexPath) as? TableCell else { return UICollectionViewCell() }
+            item.configuration(model: model.models[indexPath.section][indexPath.item])
             return item
         }
     }
@@ -152,34 +156,34 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
         switch indexPath.section {
         case 0:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: PhotosCellHeader.identifier,
-                                                                         for: indexPath) as! PhotosCellHeader
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                               withReuseIdentifier: PhotosCellHeader.identifier,
+                                                                               for: indexPath) as? PhotosCellHeader else { return UICollectionReusableView() }
             header.title.text = Header.myAlbum
             header.buttonAll.configuration?.title = Header.allButton
             header.buttonAll.configuration?.attributedTitle?.font = .systemFont(ofSize: 22)
             return header
 
         case 1:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: PhotosCellHeader.identifier,
-                                                                         for: indexPath) as! PhotosCellHeader
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                               withReuseIdentifier: PhotosCellHeader.identifier,
+                                                                               for: indexPath) as? PhotosCellHeader else { return UICollectionReusableView() }
             header.title.text = Header.sharedAlbums
             header.buttonAll.configuration?.title = Header.allButton
             header.buttonAll.configuration?.attributedTitle?.font = .systemFont(ofSize: 22)
             return header
 
         case 2:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: PhotosCellHeader.identifier,
-                                                                         for: indexPath) as! PhotosCellHeader
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                               withReuseIdentifier: PhotosCellHeader.identifier,
+                                                                               for: indexPath) as? PhotosCellHeader else { return UICollectionReusableView() }
             header.title.text = Header.mediaTypes
             return header
 
         default:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: PhotosCellHeader.identifier,
-                                                                         for: indexPath) as! PhotosCellHeader
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                               withReuseIdentifier: PhotosCellHeader.identifier,
+                                                                               for: indexPath) as? PhotosCellHeader else { return UICollectionReusableView() }
             header.title.text = Header.utilities
             return header
         }
