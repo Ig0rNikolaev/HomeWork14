@@ -140,6 +140,3 @@ class TableCell: UICollectionViewCell {
         self.rightIconImage.image = nil
     }
 }
-
-
-

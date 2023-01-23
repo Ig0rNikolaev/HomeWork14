@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Model: Hashable {
+struct Model {
     let title: String
     let iconImage: String?
     let rightIconImage: String?
@@ -16,7 +16,7 @@ struct Model: Hashable {
 }
 
 class ModelClass {
-    static let models = [
+        let models = [
         [Model(title: "Недавние", iconImage: "foto3", rightIconImage: nil, labelNumber: "84"),
          Model(title: "Избранное", iconImage: "foto4", rightIconImage: nil, labelNumber: "2"),
          Model(title: "Instagram", iconImage: "foto1", rightIconImage: nil, labelNumber: "95"),
