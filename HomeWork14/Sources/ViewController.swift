@@ -8,11 +8,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     var model = ModelClass()
-
+    
     //: MARK: - UI Elements
-
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupCompositionalLayout())
         collectionView.dataSource = self
@@ -24,21 +24,21 @@ class ViewController: UIViewController {
                                 withReuseIdentifier: PhotosCellHeader.identifier)
         return collectionView
     }()
-
+    
     //: MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
         setupLayout()
     }
-
+    
     //: MARK: - Setups
-
+    
     private func setupHierarchy() {
         view.addSubview(collectionView)
     }
-
+    
     func createHeaderAlbum() -> NSCollectionLayoutBoundarySupplementaryItem {
         let layoutSectionHeaderSize = Header.layoutSectionHeaderSize
         let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         layoutSectionHeader.contentInsets = Header.headerContentInsets
         return layoutSectionHeader
     }
-
+    
     func createAlbumSection(_ countGroup: Int,
                             _ groupSizeHeight: CGFloat,
                             _ groupContentInsetsBottom: CGFloat,
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         layoutSection.orthogonalScrollingBehavior = .groupPaging
         return layoutSection
     }
-
+    
     func setupListLayout(layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
         let section = NSCollectionLayoutSection.list(using: .init(appearance: .sidebarPlain), layoutEnvironment: layoutEnvironment)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6)
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
         section.boundarySupplementaryItems = [header]
         return section
     }
-
+    
     private func setupLayout() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -94,10 +94,10 @@ class ViewController: UIViewController {
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
         ])
     }
-
+    
     func setupCompositionalLayout() -> UICollectionViewCompositionalLayout {
-            return UICollectionViewCompositionalLayout { (section, layoutEnvironment ) -> NSCollectionLayoutSection in
-
+        return UICollectionViewCompositionalLayout { (section, layoutEnvironment ) -> NSCollectionLayoutSection in
+            
             switch SectionName(rawValue: section) {
             case .myAlbums:
                 return self.createAlbumSection(2, 4 / 3.31, 20, 0)
@@ -107,24 +107,24 @@ class ViewController: UIViewController {
                 return self.setupListLayout(layoutEnvironment: layoutEnvironment)
             default:
                 return self.setupListLayout(layoutEnvironment: layoutEnvironment)
-                }
             }
         }
     }
+}
 
 extension ViewController: UICollectionViewDataSource {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return model.optionsModel[section].options.count
     }
-
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return model.optionsModel.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath)
     -> UICollectionReusableView {
-
+        
         switch SectionName(rawValue: indexPath.section) {
         case .myAlbums:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
@@ -164,11 +164,11 @@ extension ViewController: UICollectionViewDataSource {
             return header
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         let model = model.optionsModel[indexPath.section].options[indexPath.item]
-
+        
         switch model {
         case .albumCell(let cellModel):
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumsCell.identifier,
@@ -181,7 +181,7 @@ extension ViewController: UICollectionViewDataSource {
             item.configuration(model: cellModel)
             return item
         default:
-             break
+            break
         }
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 //MARK: - Constants Model
 
 enum ConstantsTitle{
-   static let recents = "Недавние"
+    static let recents = "Недавние"
     static let favourites = "Избранное"
     static let instagram = "Instagram"
     static let whatsApp = "WhatsApp"
@@ -86,9 +86,9 @@ enum Header {
         widthDimension: .fractionalWidth(1.1),
         heightDimension: .estimated(60))
     static let headerContentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
-
-// String
-
+    
+    // String
+    
     static let myAlbum = "Мои альбомы"
     static let sharedAlbums = "Общие альбомы"
     static let mediaTypes = "Типы медиафайлов"

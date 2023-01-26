@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 class TableCell: UICollectionViewCell {
-
+    
     static let identifier = "TableCell"
-
+    
     //: MARK: - UI Elements
-
+    
     private lazy var iconImage: UIImageView = {
         let iconImage = UIImageView()
         iconImage.tintColor = .systemBlue
@@ -21,7 +21,7 @@ class TableCell: UICollectionViewCell {
         iconImage.translatesAutoresizingMaskIntoConstraints = false
         return iconImage
     }()
-
+    
     private lazy var labelTable: UILabel = {
         let labelTable = UILabel()
         labelTable.textColor = .systemBlue
@@ -30,7 +30,7 @@ class TableCell: UICollectionViewCell {
         labelTable.translatesAutoresizingMaskIntoConstraints = false
         return labelTable
     }()
-
+    
     private lazy var rightIconImage: UIImageView = {
         let rightIconImage = UIImageView()
         rightIconImage.tintColor = .systemGray
@@ -38,7 +38,7 @@ class TableCell: UICollectionViewCell {
         rightIconImage.translatesAutoresizingMaskIntoConstraints = false
         return rightIconImage
     }()
-
+    
     private lazy var labelNumber: UILabel = {
         let labelNumber = UILabel()
         labelNumber.textColor = .systemGray
@@ -47,7 +47,7 @@ class TableCell: UICollectionViewCell {
         labelNumber.translatesAutoresizingMaskIntoConstraints = false
         return labelNumber
     }()
-
+    
     private lazy var chevronIcon: UIImageView = {
         let chevron = UIImageView()
         chevron.image = UIImage(systemName: "chevron.forward")
@@ -56,22 +56,22 @@ class TableCell: UICollectionViewCell {
         chevron.translatesAutoresizingMaskIntoConstraints = false
         return chevron
     }()
-
+    
     // MARK: - Initializers
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         clipsToBounds = true
         setupHierarchy()
         setupLayout()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     // MARK: - Setup
-
+    
     private func setupHierarchy() {
         contentView.addSubview(labelTable)
         contentView.addSubview(iconImage)
@@ -79,38 +79,38 @@ class TableCell: UICollectionViewCell {
         contentView.addSubview(rightIconImage)
         contentView.addSubview(chevronIcon)
     }
-
+    
     private func setupLayout() {
         NSLayoutConstraint.activate([
             iconImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             iconImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             iconImage.heightAnchor.constraint(equalToConstant: 25),
             iconImage.widthAnchor.constraint(equalToConstant: 25),
-
+            
             labelTable.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             labelTable.leftAnchor.constraint(equalTo: iconImage.rightAnchor, constant: 20),
-
+            
             labelNumber.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             labelNumber.rightAnchor.constraint(equalTo: chevronIcon.rightAnchor, constant: -22),
-
+            
             rightIconImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             rightIconImage.rightAnchor.constraint(equalTo: chevronIcon.rightAnchor, constant: -17),
-
+            
             chevronIcon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             chevronIcon.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             chevronIcon.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
         ])
     }
-
+    
     // MARK: - Configuration
-
+    
     func configuration(model: Model) {
         self.iconImage.image = UIImage(systemName: model.iconImage ?? "")
         labelTable.text = model.title
         labelNumber.text = model.labelNumber
         self.rightIconImage.image = UIImage(systemName: model.rightIconImage ?? "")
     }
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         labelNumber.text = nil
