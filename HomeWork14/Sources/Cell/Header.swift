@@ -31,8 +31,8 @@ class PhotosCellHeader: UICollectionReusableView {
 
     lazy var line: UILabel = {
         let line = UILabel()
-        line.backgroundColor = .systemGray5
         line.contentMode = .center
+        line.backgroundColor = .systemGray5
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
     }()
@@ -61,10 +61,11 @@ class PhotosCellHeader: UICollectionReusableView {
     private func setupLayout() {
         NSLayoutConstraint.activate([
             title.centerYAnchor.constraint(equalTo: centerYAnchor.self),
-            title.leftAnchor.constraint(equalTo: leftAnchor.self),
+            title.centerXAnchor.constraint(equalTo: centerXAnchor.self),
+            title.leftAnchor.constraint(equalTo: leftAnchor.self, constant: 10),
 
             buttonAll.centerYAnchor.constraint(equalTo: centerYAnchor.self),
-            buttonAll.rightAnchor.constraint(equalTo: rightAnchor.self),
+            buttonAll.rightAnchor.constraint(equalTo: rightAnchor.self, constant: -30),
 
             line.centerXAnchor.constraint(equalTo: centerXAnchor.self),
             line.heightAnchor.constraint(equalToConstant: 1),

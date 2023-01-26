@@ -13,11 +13,16 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTabbarColor()
         setupTitle()
         setupTabBarViewController()
     }
 
     //: MARK: - Setups
+
+    func setupTabbarColor() {
+        tabBar.backgroundColor = .white
+    }
     
         func setupTitle() {
             title = Title.album
