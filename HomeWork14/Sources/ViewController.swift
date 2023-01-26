@@ -126,7 +126,6 @@ extension ViewController: UICollectionViewDataSource {
     -> UICollectionReusableView {
 
         switch SectionName(rawValue: indexPath.section) {
-
         case .myAlbums:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                                withReuseIdentifier: PhotosCellHeader.identifier,
