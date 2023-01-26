@@ -81,49 +81,26 @@ enum ConstantsNumber {
 
 //MARK: - ViewController
 
-//Setup
-
-enum SectionZero {
-    static let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                 heightDimension: .fractionalHeight(1))
-    static let itemContentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-    static let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 2.15),
-                                                  heightDimension: .fractionalWidth(4 / 3.31))
-    static let groupInterItemSpacing = NSCollectionLayoutSpacing.fixed(20)
-    static let groupContentInsets = NSDirectionalEdgeInsets(top: 0, leading: 1.5, bottom: 20, trailing: 1.5)
+enum Header {
     static let layoutSectionHeaderSize = NSCollectionLayoutSize(
         widthDimension: .fractionalWidth(1.1),
         heightDimension: .estimated(60))
-    static let headerContentInsets = NSDirectionalEdgeInsets(top: 0, leading: 28, bottom: 0, trailing: 11)
-    static let sectionContentInsets = NSDirectionalEdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6)
+    static let headerContentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
+
+// String
+
+    static let myAlbum = "Мои альбомы"
+    static let sharedAlbums = "Общие альбомы"
+    static let mediaTypes = "Типы медиафайлов"
+    static let utilities = "Другое"
+    static let allButton = "Вce"
 }
 
-enum SectionOne {
+enum AlbumCell {
     static let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                  heightDimension: .fractionalHeight(1))
     static let itemContentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-    static let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 2.15),
-                                                   heightDimension: .fractionalWidth(1 / 1.8))
     static let groupInterItemSpacing = NSCollectionLayoutSpacing.fixed(20)
-    static let groupContentInsets = NSDirectionalEdgeInsets(top: 0, leading: 1.5, bottom: 0, trailing: 1.5)
-    static  let layoutSectionHeaderSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(1.1),
-        heightDimension: .estimated(60))
-    static let headerContentInsets = NSDirectionalEdgeInsets(top: 0, leading: 28, bottom: 0, trailing: 11)
-    static let sectionContentInsets = NSDirectionalEdgeInsets(top: 0, leading: 6, bottom: 10, trailing: 6)
-}
-
-enum SectionDefoult {
-    static let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                 heightDimension: .fractionalHeight(1))
-    static let itemContentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0)
-    static let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                  heightDimension: .absolute(54))
-    static let layoutSectionHeaderSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(1.1),
-        heightDimension: .estimated(60))
-    static let headerContentInsets = NSDirectionalEdgeInsets(top: 0, leading: 28, bottom: 0, trailing: 11)
-    static let sectionContentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: -2)
 }
 
 //: MARK: - Tab bar
@@ -140,16 +117,6 @@ enum TabBarIcon {
     static let forYou = "heart.text.square.fill"
     static let albums = "square.stack.fill"
     static let search = "magnifyingglass"
-}
-
-// String
-
-enum Header {
-    static let myAlbum = "Мои альбомы"
-    static let sharedAlbums = "Общие альбомы"
-    static let mediaTypes = "Типы медиафайлов"
-    static let utilities = "Другое"
-    static let allButton = "Вce"
 }
 
 enum Title {

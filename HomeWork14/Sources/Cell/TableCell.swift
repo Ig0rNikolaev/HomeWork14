@@ -14,13 +14,6 @@ class TableCell: UICollectionViewCell {
 
     //: MARK: - UI Elements
 
-    lazy var lineTable: UILabel = {
-        let lineTable = UILabel()
-        lineTable.contentMode = .center
-        lineTable.translatesAutoresizingMaskIntoConstraints = false
-        return lineTable
-    }()
-
     private lazy var iconImage: UIImageView = {
         let iconImage = UIImageView()
         iconImage.tintColor = .systemBlue
@@ -63,6 +56,7 @@ class TableCell: UICollectionViewCell {
         chevron.translatesAutoresizingMaskIntoConstraints = false
         return chevron
     }()
+
     // MARK: - Initializers
 
     override init(frame: CGRect) {
@@ -79,7 +73,6 @@ class TableCell: UICollectionViewCell {
     // MARK: - Setup
 
     private func setupHierarchy() {
-        contentView.addSubview(lineTable)
         contentView.addSubview(labelTable)
         contentView.addSubview(iconImage)
         contentView.addSubview(labelNumber)
@@ -105,12 +98,7 @@ class TableCell: UICollectionViewCell {
 
             chevronIcon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             chevronIcon.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            chevronIcon.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15),
-
-            lineTable.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 50),
-            lineTable.heightAnchor.constraint(equalToConstant: 1),
-            lineTable.widthAnchor.constraint(equalToConstant: 500),
-            lineTable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            chevronIcon.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
         ])
     }
 
@@ -121,15 +109,6 @@ class TableCell: UICollectionViewCell {
         labelTable.text = model.title
         labelNumber.text = model.labelNumber
         self.rightIconImage.image = UIImage(systemName: model.rightIconImage ?? "")
-        deleteLine()
-    }
-
-    func deleteLine() {
-        if labelTable.text == "Недавно удаленные" || labelTable.text == "Записи экрана" {
-            lineTable.backgroundColor = .white
-        } else {
-            lineTable.backgroundColor = .systemGray5
-        }
     }
 
     override func prepareForReuse() {

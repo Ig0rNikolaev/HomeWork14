@@ -71,6 +71,7 @@ class AlbumsCell: UICollectionViewCell {
             lablePhotoNamber.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
+    
     // MARK: - Configuration
 
     func configuration(model: Model) {
